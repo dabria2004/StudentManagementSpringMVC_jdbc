@@ -47,6 +47,8 @@ public class UserController {
 		}else if(userid.isBlank() || username.isBlank()){
 			searchUserList = udao.selectAll();
 			System.out.println("something is blank => "+searchUserList);
+		}else {
+			searchUserList = udao.selectUserByIdOrName(userid, username);
 		}
 		
 		if(searchUserList.size()==0) {
@@ -58,6 +60,12 @@ public class UserController {
 
 	@RequestMapping(value="/setupadduser", method=RequestMethod.GET)
 	public ModelAndView setupadduser() {
+		return new ModelAndView("USR001","bean",new UserBean());
+	}
+	
+	@GetMapping(value="/setupadduseragain")
+	public ModelAndView setupadduseragain(ModelMap model) {
+		model.addAttribute("success", "Succesfully Registered!!");
 		return new ModelAndView("USR001","bean",new UserBean());
 	}
 	
@@ -93,7 +101,7 @@ public class UserController {
 			int i = udao.insertData(dto);
 			if(i>0) {
 				model.addAttribute("success", "Successfully Registered!!");
-				return "USR001";
+				return "redirect:/setupadduseragain";
 		}else {
 			model.addAttribute("fail", "Register Failed!!");
 			return "USR001";

@@ -41,6 +41,18 @@ public class ClassController {
 		}
 		return new ModelAndView("BUD003", "cbean", cbean);
 	}
+	
+	@GetMapping(value = "/setupaddclassagain")
+	public ModelAndView setupaddclassagain(ModelMap model) {
+		ClassBean cbean = new ClassBean();
+		ArrayList<ClassResponseDTO> classlist = cdao.selectAll();
+		
+		int tempId = Integer.parseInt(classlist.get(classlist.size() - 1).getClassid().substring(3)) + 1;
+		String classid = String.format("COU%03d", tempId);
+		cbean.setClassid(classid);
+		model.addAttribute("success", "Successfully Registered!!");
+		return new ModelAndView("BUD003", "cbean", cbean);
+	}
 
 	@RequestMapping(value = "/addclass", method = RequestMethod.POST)
 	public String addclass(@ModelAttribute("cbean") ClassBean cbean, ModelMap model) {
@@ -58,7 +70,7 @@ public class ClassController {
 			int rs = cdao.insertData(dto);
 			if (rs > 0) {
 //				model.addAttribute("success", "Successfully Registered!!");
-				return "redirect:/setupaddclass";
+				return "redirect:/setupaddclassagain";
 			} 
 			else {
 				model.addAttribute("fail", "Insert Failed!!");

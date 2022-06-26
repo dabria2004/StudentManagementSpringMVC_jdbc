@@ -60,7 +60,7 @@
       </div>
       <div class="main_contents">
 			<div id="sub_content">
-				<form action="SearchStudentServlet" class="row g-3 mt-3 ms-2">
+				<form action="/StudentManagementSpringMVC/searchstudent" method = "post" class="row g-3 mt-3 ms-2">
 					<div class="col-auto">
 						<label for="staticEmail2" class="visually-hidden">studentID</label>
 						<input type="text" class="form-control" id="staticEmail2"
@@ -101,15 +101,15 @@
 								<tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
 									<th scope="row">${count}</th>
-									<td>${student.id}</td>
-									<td>${student.name}</td>
+									<td>${student.studentid}</td>
+									<td>${student.studentname}</td>
 									<td>
 										<c:forEach var="course"
 											items="${coursesLists[loop.index]}">
 											${course.classname},
 										</c:forEach></td>
 									<td>
-										<a href='SeeMoreServlet?id=${student.id}'>
+										<a href="/StudentManagementSpringMVC/studentdetail/${student.studentid}">
 											<button type="submit" class="btn btn-secondary mb-2">
 												See More
 											</button>

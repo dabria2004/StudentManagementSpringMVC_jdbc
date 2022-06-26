@@ -66,7 +66,7 @@ public class UserDAO {
 	}
 	
 	public ArrayList<UserResponseDTO> selectAll(){
-		ArrayList<UserResponseDTO> list=new ArrayList();
+		ArrayList<UserResponseDTO> list=new ArrayList<>();
 		String sql="select * from user";		
 		try {
 		PreparedStatement ps=con.prepareStatement(sql);

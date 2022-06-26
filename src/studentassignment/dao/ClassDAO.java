@@ -64,4 +64,27 @@ public class ClassDAO {
 		}
 		return false;
 	}
+	
+	public ArrayList<ClassResponseDTO> selectCoursesByStudentId(String student_id) {
+		ArrayList<ClassResponseDTO> list = new ArrayList<>();
+		String sql = "select class.class_name, class.class_id from selected_courses join class "
+				+ "on selected_courses.class_id = class.class_id where selected_courses.student_id = ? ";
+		
+//		String sql = "select course_table.id from course_table join student_course on "
+//				+ "course_table.id = student_course.course_id where student_course.student_id = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, student_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				ClassResponseDTO res = new ClassResponseDTO();
+				res.setClassid(rs.getString("class_id"));
+				res.setClassname(rs.getString("class_name"));
+				list.add(res);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return list;
+	}
 }

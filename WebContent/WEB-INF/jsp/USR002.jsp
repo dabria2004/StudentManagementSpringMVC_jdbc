@@ -83,7 +83,7 @@
 						<div class="col-md-2"></div>
 						<form:label path="userid" class="col-md-2 col-form-label">Id</form:label>
 						<div class="col-md-4">
-							<form:input type="text" class="form-control" path="userid"/>
+							<form:input type="text" class="form-control" path="userid" readonly="true"/>
 						</div>
 					</div>
 					<div class="row mb-4">

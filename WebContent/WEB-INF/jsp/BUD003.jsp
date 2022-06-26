@@ -86,7 +86,7 @@
 						
 						<div class="col-md-4">
 							
-							<form:input type="text" class="form-control" id="id" path  ="classid"/>
+							<form:input type="text" class="form-control" id="id" path  ="classid" readonly="true"/>
 						</div>
 					</div> 
 

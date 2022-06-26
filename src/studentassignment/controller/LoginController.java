@@ -22,6 +22,11 @@ public class LoginController {
 		return "LGN001";
 	}
 	
+	@GetMapping(value="/")
+	public String start() { 
+		return "LGN001";
+	}
+	
 	@RequestMapping(value = "/welcomepage", method = RequestMethod.POST)
 	public String finalexampage(@RequestParam("email") String email,@RequestParam("password") String password,
 	HttpSession session,ModelMap model) {
