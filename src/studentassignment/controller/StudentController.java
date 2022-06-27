@@ -92,7 +92,6 @@ public class StudentController {
 		for (int i = 0; i < attendCourses.length; i++) {
 			sdao.insertStudentCourse(attendCourses[i], sbean.getStudentid());
 		}
-//		model.addAttribute("message", "Registered Succesfully !!");
 		return "redirect:/setupaddstudentagain";	
 	}
 	

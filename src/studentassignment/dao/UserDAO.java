@@ -218,4 +218,21 @@ public class UserDAO {
 
 		return false;
 	}
+	
+	public boolean checkemail(String email) {
+
+		String sql = "select * from user where user_email=?";
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, email);
+			ResultSet rs = st.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return false;
+	}
 }

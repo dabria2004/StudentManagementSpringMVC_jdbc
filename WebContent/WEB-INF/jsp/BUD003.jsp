@@ -31,7 +31,12 @@
 </head>
 
 <body>
-	
+	<%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	if (session.getAttribute("userInfo") == null) {
+		response.sendRedirect("/StudentManagementSpringMVC/login");	
+	}
+	%>
 	<div id="testheader">
 		<div class="container">
 			<div class=row>

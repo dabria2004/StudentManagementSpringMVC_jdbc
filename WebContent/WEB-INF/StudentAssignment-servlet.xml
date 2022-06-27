@@ -21,7 +21,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <bean id="classDao" class="studentassignment.dao.ClassDAO"></bean>
 <bean id="studentDao" class="studentassignment.dao.StudentDAO"></bean>
 
-<mvc:resources mapping="/resources/**" location="/resources/theme1/" cache-period="31556926"/>
+<mvc:resources mapping="/resources/**" location="/resources/theme1/"/>
 <mvc:annotation-driven/>
+
+<bean class = "org.springframework.context.support.ResourceBundleMessageSource" id = "messageSource">
+<property name = "basename" value = "messages" />
+</bean>
 
 </beans>

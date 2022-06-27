@@ -72,13 +72,13 @@ public class UserController {
 	@RequestMapping(value="/adduser", method=RequestMethod.POST)
 	public String adduser(@ModelAttribute("bean")UserBean bean,ModelMap model) {
 //		if(bs.hasErrors()) {
-//			return "addUser";
+//			return "USR001";
 //		}
 		if(bean.getUsername().isBlank() || bean.getUseremail().isBlank() || bean.getPassword().isBlank() || bean.getConpassword().isBlank() || bean.getRole().isBlank()) {
 			model.addAttribute("error", "You must fullfill the fields.");
 			return "USR001";
 				}
-		else if(!bean.getPassword().equals(bean.getConpassword())) {
+		if(!bean.getPassword().equals(bean.getConpassword())) {
 			model.addAttribute("password", "Passwords do not match!!");
 			return "USR001";
 		}else {
@@ -117,7 +117,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/updateuser", method=RequestMethod.POST)
-	public String updatebook(@ModelAttribute("bean") @Validated UserBean bean, BindingResult bs, ModelMap model) {
+	public String updatebook(@ModelAttribute("bean") UserBean bean, ModelMap model) {
 //		if(bs.hasErrors()) {
 //			return "USR002";
 //		}
@@ -139,8 +139,7 @@ public class UserController {
 			dto.setRole(bean.getRole());
 			int i = udao.updateData(dto);
 			if(i>0) {
-				model.addAttribute("success", "Successfully Updated!!");
-				return "USR002";
+				return "redirect:/setupusersearch";
 			}else {
 				model.addAttribute("error", "Update Failed!!");
 				return "USR002";

@@ -24,6 +24,4 @@ public class StudentBean {
 	private List<String> attendCourses;
 	@NotEmpty
 	private List<ClassBean> attend;
-//	private List<CourseBean> attend;
-//	private List<String> stuCourse;
 }

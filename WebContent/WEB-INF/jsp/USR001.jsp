@@ -31,7 +31,12 @@
 </head>
 
 <body>
-	 
+	 <%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	if (session.getAttribute("userInfo") == null) {
+		response.sendRedirect("/StudentManagementSpringMVC/login");	
+	}
+	%>
     <div id="testheader">
         <div class="container">
             <div class=row>        
@@ -68,6 +73,7 @@
 		<div class="main_contents">
 			<div id="sub_content">
 				<form:form action="/StudentManagementSpringMVC/adduser" method="post" modelAttribute="bean">
+				
 					<div style="color: red;">
 						<h2 class="col-md-6 offset-md-2 mb-5 mt-4">${error}</h2>
 					</div>
@@ -86,20 +92,23 @@
 						<div class="col-md-2"></div>
 						<form:label path="username" class="col-md-2 col-form-label">Name</form:label>
 						<div class="col-md-4">
-							<form:input type="text" class="form-control" path="username"/>
+							<!-- <form:errors path="username" style="color:red;"></form:errors> -->
+							<form:input type="text" class="form-control" path="username"/>							
 						</div>
 					</div>
 					<div class="row mb-4">
 						<div class="col-md-2"></div>
 						<form:label path="useremail" class="col-md-2 col-form-label">Email</form:label>
 						<div class="col-md-4">
+							<!-- <form:errors path="useremail" style="color:red;"></form:errors> -->
 							<form:input type="email" class="form-control" id="email" path="useremail"/>
 						</div>
 					</div>
 					<div class="row mb-4">
 						<div class="col-md-2"></div>
-						<form:label path="password" class="col-md-2 col-form-label">Passowrd</form:label>
+						<form:label path="password" class="col-md-2 col-form-label">Password</form:label>
 						<div class="col-md-4">
+							<!-- <form:errors path="password" style="color:red;"></form:errors> -->
 							<form:password class="form-control" path="password"/>
 						</div>
 					</div>
@@ -107,6 +116,7 @@
 						<div class="col-md-2"></div>
 						<form:label path="conpassword" class="col-md-2 col-form-label">Confirm Passowrd</form:label>
 						<div class="col-md-4">
+							<!-- <form:errors path="conpassword" style="color:red;"></form:errors> -->
 							<form:password class="form-control" id="confirmPassword"
 								path="conpassword"/>
 						</div>

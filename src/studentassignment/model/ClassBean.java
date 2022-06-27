@@ -9,5 +9,4 @@ public class ClassBean {
 	private String classid;
 	@NotEmpty
 	private String classname;
-	
 }

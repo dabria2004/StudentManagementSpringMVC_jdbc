@@ -26,7 +26,12 @@
 </head>
 
 <body>
-    
+    <%
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	if (session.getAttribute("userInfo") == null) {
+		response.sendRedirect("/StudentManagementSpringMVC/login");	
+	}
+	%>
     <div id="testheader">
         <div class="container">
             <div class=row>        
@@ -80,7 +85,9 @@
 						<button type="submit" class="btn btn-success mb-3">Search</button>
 					</div>
 					<div class="col-auto">
-						<button type="reset" class="btn btn-secondary mb-3">Reset</button>
+					<a href="/StudentManagementSpringMVC/setupstudentsearch">
+						<button type="button" class="btn btn-secondary mb-3">Reset</button>
+						</a>
 					</div>
 				</form>
 				<div>
